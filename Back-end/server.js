@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 
 
-app.get('/');
+app.get('/', (request, response) => { response.send('estou aqui')});
 
 const port = 3001;
 app.listen(port, () => console.log(`Listening on port ${port}!`))
