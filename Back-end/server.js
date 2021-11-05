@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 
-const { authValidation } = require('./auth/authMiddleware');
+// const { authValidation } = require('./auth/authMiddleware');
 
 const userController = require('./controller/userController');
 
@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 app.get('/', (request, response) => { response.send('estou')});
 
-app.route('/users')
+app.route('/user')
   .post(userController.login);
 
 const port = 3001;

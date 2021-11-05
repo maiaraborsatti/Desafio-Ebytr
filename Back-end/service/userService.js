@@ -1,4 +1,4 @@
-const userModel = require('../models/loginModel');
+const userModel = require('../models/userModel');
 
 const ifExist = (array) => array.every((entrie) => entrie);
 
