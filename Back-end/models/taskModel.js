@@ -21,4 +21,14 @@ const exclude = async (id) => {
   return db.collection('tasks').deleteOne({ _id: ObjectId(id) });
 };
 
-module.exports = { create, getAll, exclude };
+const update = async ({ id, task, status, userId }) => {
+  if (!ObjectId.isValid(id)) return null;
+  const db = await connection();
+
+  const updatedTask = await db.collection('tasks').updateOne(
+    { _id: ObjectId(id) }, { $set: { task, status, userId } },
+  );
+  return updatedTask;
+};
+
+module.exports = { create, getAll, exclude, update };

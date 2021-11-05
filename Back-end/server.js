@@ -23,7 +23,8 @@ app.route('/task')
   .get(taskController.getAll);
 
 app.route('/task/:id')
-  .delete(taskController.exclude);
+  .delete(taskController.exclude)
+  .put(taskController.update);
 
 const port = 3001;
 app.listen(port, () => console.log(`Listening on port ${port}!`))
