@@ -1,4 +1,4 @@
-const userService = require('../services/userService');
+const userService = require('../service/userService');
 const auth = require('../auth/jwtFunctions');
 
 const login = async (req, res) => {
