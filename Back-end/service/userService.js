@@ -14,4 +14,19 @@ const validations = async ({ email, password }) => {
   return userExist;
 };
 
-module.exports = { validations };
+const isValid = (email) => ((/\S+@\S+\.\S+/).test(email));
+
+const createUser = async ({ name, email, password }) => {
+  const userExist = await userModel.userExists(email);
+  if (userExist) return { erro: { code: 409, message: 'E-mail já registrado' } };
+
+  const ifExists = ifExist([name, email, password]);
+  if (!ifExists) return { erro: { code: 400, message: 'Entradas inválidas. Tente novamente.' } };
+
+  const validateEmail = isValid(email);
+  if (!validateEmail) return { erro: { code: 400, message: 'Entradas inválidas. Tente novamente.' } };
+
+  return userModel.create({ name, email, password });
+};
+
+module.exports = { validations, createUser };

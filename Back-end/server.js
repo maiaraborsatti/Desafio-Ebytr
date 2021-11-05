@@ -13,6 +13,9 @@ app.use(bodyParser.json());
 app.get('/', (request, response) => { response.send('estou')});
 
 app.route('/user')
+  .post(userController.createUser);
+
+app.route('/login')
   .post(userController.login);
 
 const port = 3001;

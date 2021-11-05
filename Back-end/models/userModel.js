@@ -7,4 +7,12 @@ const userExists = async (email) => {
   return user;
 };
 
-module.exports = { userExists };
+const create = async ({ name, email, password }) => {
+  const db = await connection();
+  const createdUser = await db.collection('todolist_ebytr')
+  .insertOne({ name, email, password, role: 'user' });
+
+  return { user: { name, email, role: 'user', _id: createdUser.insertedId } };
+};
+
+module.exports = { userExists, create };
