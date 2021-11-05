@@ -8,4 +8,9 @@ const create = async ({ task, status }) => {
   return { task: {task, status, date: new Date(), _id: createdTask.insertedId } };
 };
 
-module.exports = { create };
+const getAll = async () => {
+  const db = await connection();
+  return db.collection('tasks').find().toArray();
+};
+
+module.exports = { create, getAll };

@@ -19,7 +19,8 @@ app.route('/login')
 app.use(authValidation);
 
 app.route('/task')
-  .post(taskController.createTask);
+  .post(taskController.createTask)
+  .get(taskController.getAll);
 
 const port = 3001;
 app.listen(port, () => console.log(`Listening on port ${port}!`))
