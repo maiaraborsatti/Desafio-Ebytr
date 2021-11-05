@@ -25,4 +25,16 @@ const getAll = async (_req, res) => {
   }
 };
 
-module.exports = { createTask, getAll };
+const exclude = async (req, res) => {
+  console.log(req.params);
+  try {
+    const { id } = req.params;
+    await taskModel.exclude(id);
+
+    res.status(204).end();
+  } catch (error) {
+    return res.status(500).json({ message: 'Deu ruim' });
+  }
+};
+
+module.exports = { createTask, getAll, exclude };

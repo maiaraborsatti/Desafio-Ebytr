@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const connection = require('./connection');
 
 const create = async ({ task, status }) => {
@@ -13,4 +14,11 @@ const getAll = async () => {
   return db.collection('tasks').find().toArray();
 };
 
-module.exports = { create, getAll };
+const exclude = async (id) => {
+  if (!ObjectId.isValid(id)) return null;
+  const db = await connection();
+
+  return db.collection('tasks').deleteOne({ _id: ObjectId(id) });
+};
+
+module.exports = { create, getAll, exclude };
